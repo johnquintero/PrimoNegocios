@@ -1,5 +1,5 @@
 ion-content{
-    --ion-background-color: rgb(238, 130, 233);
+    --ion-background-color: rgb(12, 165, 185);
 }
 #container {
   background-color: rgb(252, 252, 252);
@@ -26,6 +26,10 @@ ion-content{
 
 #container a {
   text-decoration: none;
+}
+
+#container ion-label{
+  color: black;
 }
 
 #container ion-input{
