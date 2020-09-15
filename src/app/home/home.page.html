@@ -6,14 +6,14 @@
   <div id="container">
     <ion-item color="ligth">
       <ion-label position="floating">Usuario</ion-label>
-      <ion-input></ion-input>
+      <ion-input type="text" #username (ionBlur)="validateUsername(username.value)"></ion-input>
     </ion-item>
     <ion-item color="ligth">
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password" #password></ion-input>
     </ion-item>
-    <ion-button color="medium" expand="block" >INICIAR SESIÓN</ion-button>
-    <p><ion-router-link color="medium" href="#" style="font-size: 10px; font:italic;">¿No tienes cuenta? Crea una ahora!</ion-router-link></p>
+    <ion-button color="medium" expand="block" (click)="login(username.value, password.value)">INICIAR SESIÓN</ion-button>
+    <p><ion-router-link color="medium" href="/dashboard" style="font-size: 10px; font:italic;">¿No tienes cuenta? Crea una ahora!</ion-router-link></p>
     <p><ion-router-link color="medium" href="#" style="font-size: 10px; font:italic;">¿Haz olvidado tu contraseña?</ion-router-link></p>
   </div>
 </ion-content>
