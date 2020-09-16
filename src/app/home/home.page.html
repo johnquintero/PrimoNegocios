@@ -1,12 +1,18 @@
-<ion-content [fullscreen]="true" style="background-color: blueviolet;">
+<ion-content [fullscreen]="true">
   <div id="primoLogo">
     <img src="assets/Primo.png"/>
     <p>El vinculo que nos une...</p>
   </div>
   <div id="container">
-    <ion-input placeholder="Usuario"></ion-input>
-    <ion-input type="password" placeholder="Contraseña"></ion-input>
-    <ion-button color="medium" expand="block" >INICIAR SESIÓN</ion-button>
+    <ion-item color="ligth">
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input type="text" #username (ionBlur)="validateUsername(username.value)"></ion-input>
+    </ion-item>
+    <ion-item color="ligth">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" #password></ion-input>
+    </ion-item>
+    <ion-button color="medium" expand="block" (click)="login(username.value, password.value)">INICIAR SESIÓN</ion-button>
     <p><ion-router-link color="medium" href="#" style="font-size: 10px; font:italic;">¿No tienes cuenta? Crea una ahora!</ion-router-link></p>
     <p><ion-router-link color="medium" href="#" style="font-size: 10px; font:italic;">¿Haz olvidado tu contraseña?</ion-router-link></p>
   </div>
