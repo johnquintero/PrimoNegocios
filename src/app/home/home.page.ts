@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {AlertController} from '@ionic/angular'
-import {AlertServicesService} from '../services/UI/alert-services.service';
 import { Router } from '@angular/router';
-import { UserServiceService } from '../services/model/user-service.service';
+import { UserService } from '../services/user/user.service';
+import { UIAlertService } from '../UITools/uialert.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-home',
@@ -11,21 +11,21 @@ import { UserServiceService } from '../services/model/user-service.service';
 })
 export class HomePage {
 
-  users:any;
-  user:any;
+  user: User;
 
-  constructor(public alert : AlertServicesService,
+  constructor(public alert : UIAlertService,
               public router: Router,
-              public userService: UserServiceService) {
+              public userService: UserService) {
               }
   
   login(username : string, password : string){
     if(username.length==0 || password.length==0){
       this.alert.putMsgError('Se requiere un valor', 'El usuario y/o contraseña no pueden estar vacios. Ingrese su usario y/o contraseña para contrinuar');
     }else{
-      console.log(this.user);
-      console.log(this.getUsers(username, password));
-      if(true){
+      this.getUser(username, password);
+      if(!this.user){
+        this.alert.putMsgError("El usuario y/o contraseña no son válidos. Verifique e intente nuevamente", "Error al inicar sesión");
+      }else{
         this.router.navigate(['/dashboard']);
       }
     }
@@ -37,18 +37,11 @@ export class HomePage {
     }
   }
 
-  getUsers(username:string, password:string) {
-    this.userService.getUser(username, password)
-    .then(data => {
-      this.users = data;
-      console.log(this.users);
-    });
-    this.obtainUser();
-  }
-
-  obtainUser(){
-    for(this.user of this.users){
-      console.log(this.user);
+  getUser(username:string, password:string) {
+    this.userService.getUser(username, password);
+    this.user = this.userService.user;
+    if(!this.userService.user){
+      console.log("Usuario obtenido: "+this.userService.user);
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AlertController} from '@ionic/angular'
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +7,7 @@ import {AlertController} from '@ionic/angular'
 /**
  * Este servicio permite centralizar el estilo de generacion de alertas
  */
-export class AlertServicesService {
+export class UIAlertService {
 
   /**
    * Construye una nueva instancia de este servicio.
